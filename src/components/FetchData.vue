@@ -16,25 +16,17 @@ export default {
       error: null
     };
   },
-  watch: {
-    endpoint: {
-      immediate: true,
-      handler: "fetchData"
-    }
-  },
-  methods: {
-    fetchData(endpoint) {
-      console.log(endpoint);
-      this.data = null;
-      this.error = null;
-      if (!endpoint.length) return;
-      this.pending = true;
-      axios
-        .get(this.endpoint)
-        .then(({ data }) => (this.data = data))
-        .catch(error => (this.error = error))
-        .finally(() => (this.pending = false));
-    }
+  created() {
+    console.log(this.endpoint);
+    this.data = null;
+    this.error = null;
+    if (!this.endpoint.length) return;
+    this.pending = true;
+    axios
+      .get(this.endpoint)
+      .then(({ data }) => (this.data = data))
+      .catch(error => (this.error = error))
+      .finally(() => (this.pending = false));
   },
   render() {
     return this.$scopedSlots.default({
