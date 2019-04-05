@@ -15,7 +15,7 @@
         </div>
         <div class="w-1/2 p-2 text-center">
           <h3 v-if="!user.nickname" class="text-2xl mb-5 uppercase">You will see his card here</h3>
-          <FetchData v-else :endpoint="userEndpoint">
+          <FetchData v-else :endpoint="userEndpoint" :key="userEndpoint">
             <div slot-scope="{data: user, error, pending}">
               <div>
                 <UserCard
